@@ -31,7 +31,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
 
-    private String urlData = "https://vast-shore-74260.herokuapp.com/banks?city=MUMBAI";
+    private static final String URL_DATA = "https://vast-shore-74260.herokuapp.com/banks?city=MUMBAI";
     private RecyclerView recyclerView;
     private List<ListItem> listItems;
 
@@ -112,20 +112,25 @@ public class MainActivity extends AppCompatActivity {
 
         StringRequest stringRequest = new StringRequest(
                 Request.Method.GET,
-                urlData,
+                URL_DATA,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
 
                         progressDialog.dismiss();
 
-                        try {
-                            JSONObject jsonObject = new JSONObject(s);
-                            JSONArray array = jsonObject.getJSONArray(urlData);
 
-                            for (int i = 0; i < array.length(); i++) {
-                                JSONObject o = array.getJSONObject(i);
+
+                        try {
+                            JSONArray jsonArray = new JSONArray(s);
+
+
+
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject o = (JSONObject) jsonArray.get(i);
                                 ListItem item = new ListItem(
+
+
                                         o.getString("bank_name"),
                                         o.getString("address"),
                                         o.getString("ifsc"),
@@ -139,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
                                 listItems.add(item);
 
                             }
-                            RecyclerView.Adapter Radapter = new MyAdapter(listItems, getApplicationContext());
+                            RecyclerView.Adapter Radapter = new MyAdapter(listItems,getApplicationContext());
                             recyclerView.setAdapter(Radapter);
 
 
