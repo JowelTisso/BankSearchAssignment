@@ -10,78 +10,202 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp"
-            >
-            <TextView
-                android:id="@+id/bankName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Bank Name :"
-                android:textSize="18sp"
-                android:textColor="@color/black"
-                />
-            <TextView
-                android:id="@+id/address"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Address :"
-                android:textSize="18sp"
-                android:textColor="@color/black"
-                />
-            <TextView
-                android:id="@+id/branch"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Branch :"
-                android:textSize="18sp"
-                android:textColor="@color/black"
-                />
-            <TextView
-                android:id="@+id/ifsc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ifsc :"
-                android:textSize="18sp"
-                android:textColor="@color/black"
-                />
-            <TextView
-                android:id="@+id/bankId"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Bank Id :"
-                android:textSize="18sp"
-                android:textColor="@color/black"
-                />
-            <TextView
-                android:id="@+id/city"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="City :"
-                android:textSize="18sp"
-                android:textColor="@color/black"
-                />
-            <TextView
-                android:id="@+id/district"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="District :"
-                android:textSize="18sp"
-                android:textColor="@color/black"
-                />
-            <TextView
-                android:id="@+id/state"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="State :"
-                android:textSize="18sp"
-                android:textColor="@color/black"
-                />
 
-        </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    >
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Bank Name :"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        />
+                    <TextView
+                        android:id="@+id/bankName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Bank Name"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        />
+                    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Address       :"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        />
+                    <TextView
+                        android:id="@+id/address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Address"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Branch         :"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        />
+                    <TextView
+                        android:id="@+id/branch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Branch"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Ifsc               :"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        />
+                    <TextView
+                        android:id="@+id/ifsc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Ifsc"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Bank Id        :"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        />
+                    <TextView
+                        android:id="@+id/bankId"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Bank Id"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="City               :"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        />
+                    <TextView
+                        android:id="@+id/city"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="City"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="District         :"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        />
+                    <TextView
+                        android:id="@+id/district"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="District"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="State            :"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        />
+                    <TextView
+                        android:id="@+id/state"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="State"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        />
+                </LinearLayout>
+
+                </LinearLayout>
+
+
+
+
+
+
+
+
+
+
 
     </android.support.v7.widget.CardView>
 

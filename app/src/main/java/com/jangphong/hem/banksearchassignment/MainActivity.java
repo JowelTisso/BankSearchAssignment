@@ -6,7 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -31,10 +34,11 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
 
-    private static final String URL_DATA = "https://vast-shore-74260.herokuapp.com/banks?city=MUMBAI";
+    private final String URL_DATA = "https://vast-shore-74260.herokuapp.com/banks?city=MUMBAI";
     private RecyclerView recyclerView;
-    private List<ListItem> listItems;
 
+    private List<ListItem> listItems;
+    RecyclerView.Adapter Radapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,27 +50,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
-        /*listItems = new ArrayList<>();
 
-        for (int i=0;i<=10;i++)
-        {
-            ListItem listItem = new ListItem(
-              "SBI"+(i+1),
-              "Lorem ipsum",
-              "SBIN00009945",
-              "khanapara",
-              "9945",
-              "ghy",
-              "kamrup",
-              "assam"
-
-
-            );
-            listItems.add(listItem);
-        }
-
-        Radapter = new MyAdapter(listItems,this);
-        recyclerView.setAdapter(Radapter);*/
 
         Spinner dropdown = findViewById(R.id.spinner);
         String[] items = new String[]{"Select City", "Mumbai", "Bangalore", "Chennai"};
@@ -101,7 +85,8 @@ public class MainActivity extends AppCompatActivity {
         loadRecyclerViewData();
 
 
-
+        Radapter = new MyAdapter(listItems,getApplicationContext());
+        recyclerView.setAdapter(Radapter);
 
     }
 
@@ -144,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
                                 listItems.add(item);
 
                             }
-                            RecyclerView.Adapter Radapter = new MyAdapter(listItems,getApplicationContext());
+                            Radapter = new MyAdapter(listItems,getApplicationContext());
                             recyclerView.setAdapter(Radapter);
 
 
@@ -166,6 +151,34 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(stringRequest);
 
 
+    }
+
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.main_menu,menu);
+        MenuItem item = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView)item.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                //Radapter.getFilter().filter(newText);
+                //Since Radapter does not know about the method
+                //So it cannot access
+                if (Radapter instanceof MyAdapter)
+                {
+                    ((MyAdapter)Radapter).getFilter();
+                }
+
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
     }
 }
 
