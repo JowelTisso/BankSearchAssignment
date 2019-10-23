@@ -38,14 +38,14 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
 
     private List<ListItem> listItems;
-    RecyclerView.Adapter Radapter;
+    MyAdapter Radapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView =  findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         loadRecyclerViewData();
 
 
-        Radapter = new MyAdapter(listItems,getApplicationContext());
+        Radapter = new MyAdapter(listItems,MainActivity.this);
         recyclerView.setAdapter(Radapter);
 
     }
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
                                 listItems.add(item);
 
                             }
-                            Radapter = new MyAdapter(listItems,getApplicationContext());
+                            Radapter = new MyAdapter(listItems,MainActivity.this);
                             recyclerView.setAdapter(Radapter);
 
 
@@ -162,20 +162,16 @@ public class MainActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                return false;
+                return true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                //Radapter.getFilter().filter(newText);
-                //Since Radapter does not know about the method
-                //So it cannot access
-                if (Radapter instanceof MyAdapter)
-                {
-                    ((MyAdapter)Radapter).getFilter();
-                }
 
-                return false;
+
+                Radapter.getFilter().filter(newText);
+
+                return true;
             }
         });
         return super.onCreateOptionsMenu(menu);

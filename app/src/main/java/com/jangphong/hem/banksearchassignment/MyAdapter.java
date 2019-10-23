@@ -10,7 +10,6 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implements Filterable {
@@ -19,14 +18,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
 
     public List<ListItem> listItems;
     public Context context;
-    public List<ListItem> AllBanks;
+    public List<ListItem> AllBanks ;
 
 
 
     public MyAdapter(List<ListItem> listItemAdap, Context context) {
         this.listItems = listItemAdap;
         this.context = context;
-        this.AllBanks = new ArrayList<>(listItemAdap);
+        this.AllBanks = listItemAdap;
 
 
 
@@ -73,34 +72,38 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
         @Override
         protected FilterResults performFiltering(CharSequence charSequence) {
 
+            String charString = charSequence.toString();
+
             List<ListItem> filteredList = new ArrayList<>();
 
-            if (charSequence.toString().isEmpty())
+            if (charString.isEmpty())
             {
-                filteredList.addAll(AllBanks);
+                listItems = AllBanks;
             }
             else
             {
                 for (ListItem Banks: AllBanks)
                 {
-                    if ( Banks.toString().toLowerCase().contains(charSequence.toString().toLowerCase()))
+                    if ( Banks.getBank_name().toLowerCase().contains(charString.toLowerCase())||Banks.getIfsc().toLowerCase().contains(charString.toLowerCase())||Banks.getAddress().toLowerCase().contains(charString.toLowerCase())||Banks.getBank_id().toLowerCase().contains(charString.toLowerCase())||Banks.getBranch().toLowerCase().contains(charString.toLowerCase())||Banks.getCity().toLowerCase().contains(charString.toLowerCase())||Banks.getDistrict().toLowerCase().contains(charString.toLowerCase())||Banks.getState().toLowerCase().contains(charString.toLowerCase()))
                     {
                         filteredList.add(Banks);
                     }
                 }
+
+                listItems = filteredList;
             }
 
             FilterResults filterResults = new FilterResults();
-            filterResults.values = filteredList;
+            filterResults.values = listItems;
 
             return filterResults;
         }
 
         @Override
-        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+        protected void publishResults(CharSequence charSequence, FilterResults filResults) {
 
-            listItems.clear();
-            listItems.addAll((Collection<? extends ListItem>) filterResults.values);
+
+            listItems = (List<ListItem>)filResults.values;
             notifyDataSetChanged();
 
         }
@@ -108,26 +111,26 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
 
     public class ViewHolder extends RecyclerView.ViewHolder
     {
-        public TextView txtviewBankName;
-        public TextView txtviewAddress;
-        public TextView txtviewIfsc;
-        public TextView txtviewBranch;
-        public TextView txtviewBankId;
-        public TextView txtviewCity;
-        public TextView txtviewDistrict;
-        public TextView txtviewState;
+        private TextView txtviewBankName;
+        private TextView txtviewAddress;
+        private TextView txtviewIfsc;
+        private TextView txtviewBranch;
+        private TextView txtviewBankId;
+        private TextView txtviewCity;
+        private TextView txtviewDistrict;
+        private TextView txtviewState;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            txtviewBankName = (TextView)itemView.findViewById(R.id.bankName);
-            txtviewAddress = (TextView)itemView.findViewById(R.id.address);
-            txtviewIfsc = (TextView)itemView.findViewById(R.id.ifsc);
-            txtviewBranch = (TextView)itemView.findViewById(R.id.branch);
-            txtviewBankId = (TextView)itemView.findViewById(R.id.bankId);
-            txtviewCity = (TextView)itemView.findViewById(R.id.city);
-            txtviewDistrict = (TextView)itemView.findViewById(R.id.district);
-            txtviewState = (TextView)itemView.findViewById(R.id.state);
+            txtviewBankName = itemView.findViewById(R.id.bankName);
+            txtviewAddress = itemView.findViewById(R.id.address);
+            txtviewIfsc = itemView.findViewById(R.id.ifsc);
+            txtviewBranch =itemView.findViewById(R.id.branch);
+            txtviewBankId = itemView.findViewById(R.id.bankId);
+            txtviewCity = itemView.findViewById(R.id.city);
+            txtviewDistrict = itemView.findViewById(R.id.district);
+            txtviewState = itemView.findViewById(R.id.state);
         }
     }
 }
